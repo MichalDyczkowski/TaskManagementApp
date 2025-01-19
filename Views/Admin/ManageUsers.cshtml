@@ -1,0 +1,33 @@
+﻿@model IEnumerable<TaskManagementApp.Models.ApplicationUser>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Zarządzanie użytkownikami";
+}
+
+<div class="container my-4">
+    <h2 class="mb-4">Użytkownicy</h2>
+
+    <table class="table table-striped table-hover">
+        <thead class="table-light">
+            <tr>
+                <th>Email</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var u in Model)
+            {
+                <tr>
+                    <td>@u.Email</td>
+                    <td>
+                        <form asp-action="DeleteUser" method="post" class="d-inline">
+                            <input type="hidden" name="userId" value="@u.Id" />
+                            <button type="submit" class="btn btn-sm btn-danger">Usuń</button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

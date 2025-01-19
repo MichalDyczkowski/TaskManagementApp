@@ -1,0 +1,49 @@
+﻿@model TaskManagementApp.Models.TaskItem
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Edytuj zadanie";
+}
+
+<div class="container my-4">
+    <h2 class="mb-4">Edytuj zadanie</h2>
+
+    <form asp-action="Edit" method="post" class="row g-3">
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(m => m.Id)
+
+        <div class="col-md-12">
+            <label for="Title" class="form-label">Tytuł</label>
+            <input asp-for="Title" class="form-control" />
+        </div>
+
+        <div class="col-md-12">
+            <label for="Description" class="form-label">Opis</label>
+            <textarea asp-for="Description" class="form-control"></textarea>
+        </div>
+
+        <div class="col-md-6">
+            <label for="DueDate" class="form-label">Termin</label>
+            <input asp-for="DueDate" type="date" class="form-control" />
+        </div>
+
+        <div class="col-md-6">
+            <div class="form-check mt-4">
+                <input asp-for="IsCompleted" type="checkbox" class="form-check-input" id="IsCompleted" />
+                <label for="IsCompleted" class="form-check-label">Czy zakończone</label>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <label for="AssignedUserId" class="form-label">Przypisz użytkownika</label>
+            <select asp-for="AssignedUserId" class="form-select" required
+                    asp-items="@(new SelectList(ViewData["Users"] as IEnumerable<TaskManagementApp.Models.ApplicationUser>, "Id", "Email"))">
+                @*  *@
+            </select>
+        </div>
+
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn btn-primary">Zapisz zmiany</button>
+        </div>
+    </form>
+</div>

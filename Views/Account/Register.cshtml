@@ -1,0 +1,45 @@
+﻿@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="d-flex justify-content-center align-items-center vh-100">
+    <div class="card shadow-sm p-4" style="width: 100%; max-width: 400px;">
+        <h3 class="text-center mb-4">Register</h3>
+        <form method="post" action="/Account/Register" onsubmit="return validatePassword()">
+            <div class="mb-3">
+                <label for="Email" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="Email" name="Email" placeholder="Enter your email" required />
+            </div>
+            <div class="mb-3">
+                <label for="Password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="Password" name="Password" placeholder="Enter your password" required />
+            </div>
+            <div class="mb-3">
+                <label for="ConfirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" class="form-control" id="ConfirmPassword" name="ConfirmPassword" placeholder="Confirm your password" required />
+            </div>
+            <div id="password-error" class="text-danger" style="display: none;">Passwords do not match.</div>
+            <div class="mt-4">
+                <button type="submit" class="btn btn-primary w-100">Register</button>
+            </div>
+        </form>
+        <div class="text-center mt-3">
+            <p class="mb-0">Already have an account? <a href="/Account/Login">Login here</a>.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function validatePassword() {
+        var password = document.getElementById('Password').value;
+        var confirmPassword = document.getElementById('ConfirmPassword').value;
+        var errorMessage = document.getElementById('password-error');
+
+        if (password !== confirmPassword) {
+            errorMessage.style.display = 'block';
+            return false;
+        }
+        errorMessage.style.display = 'none';
+        return true; 
+    }
+</script>

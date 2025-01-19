@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Panel Administratora";
+}
+
+<div class="container my-4">
+    <h2 class="mb-4">Panel Administratora</h2>
+
+    <ul class="list-group">
+        <li class="list-group-item">
+            <a asp-action="ManageUsers" class="text-decoration-none">Użytkownicy</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Logs" class="text-decoration-none">Logi</a>
+        </li>
+        <li class="list-group-item">
+            <a asp-action="Reports" class="text-decoration-none">Raporty</a>
+        </li>
+    </ul>
+</div>
